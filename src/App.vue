@@ -18,7 +18,18 @@
         },
         created(){
             console.log(this.token);
-           
+
+            axios.get('https://api.themoviedb.org/3/trending/all/day?language=it-IT', {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+            })
+            .then((res) => {
+            console.log(res.data)
+            })
+            .catch((error) => {
+            console.error(error)
+            })
         }
     };
 
