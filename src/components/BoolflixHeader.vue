@@ -1,20 +1,31 @@
 <script>
     import { store } from '../store.js';
+
     export default {
         data(){
             return{
                 store
+            }
+        },
+        methods:{
+            searchEvent() {
+                // console.log("From Header: " + this.store.researchInput); // Debugging
+                this.$emit('searchingEvent');
             }
         }
     }
 </script>
 
 <template>
-    <form @submit.prevent="console.log('Evento submit del form per la ricerca')">
-        <input type="text" v-model="store.researchInput">
-        <button type="submit">Cerca</button>
-    </form>
-    
+    <header>
+        <div class="container-xxl">
+            <form @submit.prevent="searchEvent()" class="py-4">
+                <input type="text" v-model="store.researchInput">
+                <button type="submit">Cerca</button>
+            </form>
+        </div>
+        
+    </header>
 </template>
 
 <style scoped>
