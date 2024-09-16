@@ -27,6 +27,7 @@
                 <p>Titolo Originale: {{ movie.original_title }}</p>
                 <p>Lingua: {{ movie.original_language }}</p>
                 <p>Voto: {{ calculateVote(movie.vote_average) }}</p>
+                <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="">
                 <p>--</p>
             </div>
         </div>
