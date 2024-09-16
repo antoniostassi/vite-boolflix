@@ -1,19 +1,31 @@
+
 <script>
-    //import TestTemplate from './components/TestTemplate.vue';
+
+    import BoolflixHeader from './components/BoolflixHeader.vue';
+    import axios from 'axios';
+    import { store } from './store.js';
+    import { token } from './apikey.js';
+
     export default {
         data(){
             return{
-                
+                store,
+                token
             }
         },
         components:{
-            //TestTemplate
+            BoolflixHeader
+        },
+        created(){
+            console.log(this.token);
+           
         }
-    }
+    };
+
 </script>
 
 <template>
-    <h1>Test</h1>
+    <BoolflixHeader/>
 </template>
 
 <style lang="scss">
