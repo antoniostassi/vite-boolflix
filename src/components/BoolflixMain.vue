@@ -27,7 +27,10 @@
                 <p>Titolo Originale: {{ movie.original_title }}</p>
                 <p>Lingua: {{ movie.original_language }}</p>
                 <p>Voto: {{ calculateVote(movie.vote_average) }}</p>
-                <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="">
+                <div class="moviePoster border" :style="{
+                    backgroundImage:`url('https://image.tmdb.org/t/p/w780/${movie.poster_path}')`
+                    }">
+                </div>
                 <p>--</p>
             </div>
         </div>
@@ -39,5 +42,16 @@
     p {
         margin:0;
         padding:0;
+    }  
+
+    img {
+        max-height: 100%;
     }
+
+    .moviePoster {
+        width:297px;
+        background-size:cover;
+        height: 440px;
+    }
+    
 </style>
