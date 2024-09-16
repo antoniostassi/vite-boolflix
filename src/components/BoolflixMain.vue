@@ -14,6 +14,23 @@
                 console.log(vote);
                 if (decimalSection > 500 ){ newVote ++;};
                 return newVote;
+            },
+            createFlag(prefix) {
+                const baseURL = "https://flagcdn.com/16x12/";
+                let newURL;
+                console.log(prefix);
+                if(this.store.mainLanguages.includes(prefix)) {
+                    console.log("included");
+                    newURL = ""+ baseURL + prefix + ".png";
+
+                } else {
+
+                    newURL = "https://flagcdn.com/16x12/eu.png";
+
+                }
+
+                return newURL;
+
             }
         }
     }
@@ -25,7 +42,10 @@
             <div v-for="(movie, index) in store.moviesList" :key="index"> 
                 <p>Titolo: {{ movie.name }}{{ movie.title }}</p>
                 <p>Titolo Originale: {{ movie.original_title }}</p>
-                <p>Lingua: {{ movie.original_language }}</p>
+                <div>
+                    <p>Lingua:</p>
+                    <img :src="createFlag(movie.original_language)" :alt="movie.original_title">
+                </div>
                 <p>Voto: {{ calculateVote(movie.vote_average) }}</p>
                 <div class="moviePoster border" :style="{
                     backgroundImage:`url('https://image.tmdb.org/t/p/w780/${movie.poster_path}')`
@@ -53,5 +73,4 @@
         background-size:cover;
         height: 440px;
     }
-    
 </style>
