@@ -24,7 +24,6 @@
                 <button type="submit">Cerca</button>
             </form>
         </div>
-        
     </header>
 </template>
 

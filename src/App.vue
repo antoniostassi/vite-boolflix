@@ -20,8 +20,6 @@
             BoolflixMain
         },
         created(){
-           // console.log(this.token);
-
             axios.get('https://api.themoviedb.org/3/trending/all/day?language=it-IT', {
                 headers: {
                     'Authorization': `Bearer ${this.token}`
@@ -37,7 +35,6 @@
         },
         methods:{
             callApiParams() {
-                // console.log(this.store.researchInput); //Debug
                 axios.get('https://api.themoviedb.org/3/search/movie?include_adult=false&language=it-IT&page=1', {
                 headers: {
                     'Authorization': `Bearer ${this.token}`
@@ -49,7 +46,6 @@
             .then((res) => {
                 console.log(res.data.results);
                 this.store.moviesList = res.data.results;
-                
             })
             .catch((error) => {
                 console.error(error)
@@ -61,13 +57,10 @@
 </script>
 
 <template>
-    
     <BoolflixHeader @searchingEvent="callApiParams"/>
     <BoolflixMain/>
-
 </template>
 
 <style lang="scss">
     @import "bootstrap/scss/bootstrap";
-    
 </style>

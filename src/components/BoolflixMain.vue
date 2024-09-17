@@ -11,22 +11,16 @@
             calculateVote(vote) {
                 let newVote = parseInt(vote / 2);
                 let decimalSection = (vote + "").split(".")[1];
-                console.log(vote);
                 if (decimalSection > 500 ){ newVote ++;};
                 return newVote;
             },
             createFlag(prefix) {
                 const baseURL = "https://flagcdn.com/16x12/";
                 let newURL;
-                console.log(prefix);
                 if(this.store.mainLanguages.includes(prefix)) {
-                    console.log("included");
-                    newURL = ""+ baseURL + prefix + ".png";
-
+                    newURL = baseURL + prefix + ".png";
                 } else {
-
                     newURL = "https://flagcdn.com/16x12/eu.png";
-
                 }
 
                 return newURL;
