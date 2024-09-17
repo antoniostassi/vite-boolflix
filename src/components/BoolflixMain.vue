@@ -1,5 +1,6 @@
 <script>
     import { store } from '../store.js';
+    import BoolflixSingleCard from './BoolflixSingleCard.vue';
 
     export default {
         data(){
@@ -8,24 +9,9 @@
             }
         },
         methods: {
-            calculateVote(vote) {
-                let newVote = parseInt(vote / 2);
-                let decimalSection = (vote + "").split(".")[1];
-                if (decimalSection > 500 ){ newVote ++;};
-                return newVote;
-            },
-            createFlag(prefix) {
-                const baseURL = "https://flagcdn.com/16x12/";
-                let newURL;
-                if(this.store.mainLanguages.includes(prefix)) {
-                    newURL = baseURL + prefix + ".png";
-                } else {
-                    newURL = "https://flagcdn.com/16x12/eu.png";
-                }
-
-                return newURL;
-
-            }
+        },
+        components: {
+            BoolflixSingleCard
         }
     }
 </script>
@@ -33,38 +19,43 @@
 <template>
     <main>
         <div class="container-xxl border">
-            <div v-for="(movie, index) in store.moviesList" :key="index"> 
-                <p>Titolo: {{ movie.name }}{{ movie.title }}</p>
-                <p>Titolo Originale: {{ movie.original_title }}</p>
-                <div>
-                    <p>Lingua:</p>
-                    <img :src="createFlag(movie.original_language)" :alt="movie.original_title">
-                </div>
-                <p>Voto: {{ calculateVote(movie.vote_average) }}</p>
-                <div class="moviePoster border" :style="{
-                    backgroundImage:`url('https://image.tmdb.org/t/p/w780/${movie.poster_path}')`
-                    }">
-                </div>
-                <p>--</p>
+            <div v-if="this.store.moviesList[0] == undefined">
+                <h1>TV Series of the Week:</h1>
+                <BoolflixSingleCard 
+                v-for="(hits, index) in store.bestList" :key="index"
+                :title="hits.name"
+                :originalTitle="hits.original_name"
+                :language="hits.original_language"
+                :voteAverage="hits.vote_average"
+                :poster="hits.poster_path"
+                />
+            </div>
+
+            <div v-if="this.store.moviesList[0] != undefined">
+                <h1>Movies:</h1>
+                <BoolflixSingleCard
+                v-for="(movie, index) in store.moviesList" :key="index"
+                :title="movie.title"
+                :originalTitle="movie.original_title"
+                :language="movie.original_language"
+                :voteAverage="movie.vote_average"
+                :poster="movie.poster_path"
+                />
+
+                <h1>Series:</h1>
+                <BoolflixSingleCard 
+                v-for="(serie, index) in store.seriesList" :key="index"
+                :title="serie.name"
+                :originalTitle="serie.original_name"
+                :language="serie.original_language"
+                :voteAverage="serie.vote_average"
+                :poster="serie.poster_path"
+                />
             </div>
         </div>
-        
     </main>
 </template>
 
 <style lang="scss" scoped>
-    p {
-        margin:0;
-        padding:0;
-    }  
 
-    img {
-        max-height: 100%;
-    }
-
-    .moviePoster {
-        width:297px;
-        background-size:cover;
-        height: 440px;
-    }
 </style>
