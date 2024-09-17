@@ -48,8 +48,7 @@
                 }
                 })
                 .then((res) => {
-                    if (category == "tv") {
-                        console.log("Hello!")
+                    if (category == "tv") { 
                         this.store.seriesList = res.data.results;
                     } else if(category == "movie") {
                         this.store.moviesList = res.data.results;
