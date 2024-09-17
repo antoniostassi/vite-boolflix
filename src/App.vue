@@ -34,21 +34,7 @@
         },
         methods:{
             callApiParams() {
-                axios.get('https://api.themoviedb.org/3/search/movie?include_adult=false&language=it-IT&page=1', { // Movies
-                headers: {
-                    'Authorization': `Bearer ${this.token}`
-                },
-                params: {
-                    query: this.store.researchInput
-                }
-                })
-                .then((res) => {
-                    this.store.moviesList = res.data.results;
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-
+                this.getApi(this.store.researchInput, "movie")
                 this.getApi(this.store.researchInput, "tv");
                 
             },
