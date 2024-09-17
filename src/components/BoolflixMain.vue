@@ -66,5 +66,5 @@
 </template>
 
 <style lang="scss" scoped>
-
+    @import '../assets/scss/Main.scss';
 </style>
