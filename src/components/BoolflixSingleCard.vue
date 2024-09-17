@@ -23,14 +23,14 @@
             },
             createFlag(prefix) {
 
-                const baseURL = "https://flagcdn.com/16x12/";
+                const baseURL = "https://flagcdn.com/w40/";
                 let newURL;
                 if(this.store.mainLanguages.includes(prefix)) {
                     newURL = baseURL + prefix + ".png";
                 } else if (prefix == "en"){
-                    newURL = "https://flagcdn.com/16x12/us.png";
+                    newURL = "https://flagcdn.com/w40/us.png";
                 } else {
-                    newURL = "https://flagcdn.com/16x12/eu.png";
+                    newURL = "https://flagcdn.com/w40/eu.png";
                 }
                 return newURL;
             }
@@ -39,32 +39,23 @@
 </script>
 
 <template>
-    <p>Titolo: {{ title }}</p>
-    <p>Titolo Originale: {{ originalTitle }}</p>
-    <div>
-        <p>Lingua:</p>
-        <img :src="createFlag(language)" :alt="originalTitle">
+    <div class="col">
+
+        <div class="moviePoster mb-4" :style="{
+            backgroundImage:`url('https://image.tmdb.org/t/p/w780/${poster}')`
+            }">   
+            <div class="card-information d-none p-2">
+                <p id="card_title">{{ title }}</p>
+                <p id="original_title">Titolo originale: {{ originalTitle }}</p>
+                <p id="vote">{{ calculateVote(voteAverage) }}</p>
+                <img :src="createFlag(language)" :alt="originalTitle">
+            </div>
+            
+        </div>
     </div>
-    <p>Voto: {{ calculateVote(voteAverage) }}</p>
-    <div class="moviePoster border" :style="{
-        backgroundImage:`url('https://image.tmdb.org/t/p/w780/${poster}')`
-        }">
-    </div>
+    
 </template>
 
 <style lang="scss" scoped>
-    p {
-        margin:0;
-        padding:0;
-    }  
-
-    img {
-        max-height: 100%;
-    }
-
-    .moviePoster {
-        width:297px;
-        background-size:cover;
-        height: 440px;
-    }
+    @import '../assets/scss/SingleCard.scss';
 </style>

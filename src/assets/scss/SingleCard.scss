@@ -1,0 +1,37 @@
+p {
+    margin:0;
+    padding:0;
+}  
+
+.moviePoster {
+    border-radius:10px;
+    width:297px;
+    background-size:cover;
+    height: 200px;
+    &:hover {
+        transition:all 1s;
+        position:absolute;
+        z-index: 1;
+        transform: scale(1.5);
+        height:300px;
+    }
+    &:hover .card-information {
+        display:block !important;
+    }
+    .card-information {
+        position:absolute;
+        bottom:0;
+        left:0;
+        width:100%;
+        background-color:#141414;
+        border-radius:10px;
+        transition: all 1s;
+        img {
+            position:absolute;
+            bottom:0;
+            right:0;
+            padding:15px;
+        }
+    }
+    
+}
