@@ -47,7 +47,8 @@
             <div class="card-information d-none p-2">
                 <p id="card_title">{{ title }}</p>
                 <p id="original_title">Titolo originale: {{ originalTitle }}</p>
-                <p id="vote">{{ calculateVote(voteAverage) }}</p>
+                <i v-for="(star, index) in calculateVote(voteAverage)" :key="index" class="bi bi-star-fill"></i>
+                <i v-for="(star, index) in (5 - calculateVote(voteAverage))" :key="index" class="bi bi-star"></i>
                 <img :src="createFlag(language)" :alt="originalTitle">
             </div>
             
